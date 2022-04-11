@@ -1,0 +1,27 @@
+.search_list {
+  margin: 0 auto;
+  max-width: 100rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.list_item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 9px;
+}
+.list_item:hover,
+.list_item:active {
+  background-color: #f6aaa4;
+}
+.list_item_title {
+  font-size: 2.4rem;
+}
+.list_item_img {
+  width: 5rem;
+}
