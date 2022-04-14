@@ -1,7 +1,9 @@
 import classes from "./Modal.module.css";
-import { useEffect } from "react";
+import WatchListContext from "../../store/watchlist-context";
+import { useEffect, useContext } from "react";
 import { AiOutlineFullscreenExit } from "react-icons/ai";
 const Modal = (props) => {
+  const ctx = useContext(WatchListContext);
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -11,7 +13,7 @@ const Modal = (props) => {
   }, [props]);
 
   const addToWatchList = () => {
-    console.log(props.data);
+    ctx.addMovie(props.data);
   };
 
   return (

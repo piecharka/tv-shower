@@ -8,7 +8,11 @@ export const WatchListContextProvider = (props) => {
   const [watchList, setMovieList] = useState([]);
 
   const addMovie = (movie) => {
-    setMovieList((prevList) => [...prevList, movie]);
+    const copy = watchList.find((element) => element.id === movie.id);
+    if (copy) return;
+    setMovieList((prevList) => {
+      return [...prevList, movie];
+    });
   };
 
   const contextValue = {
