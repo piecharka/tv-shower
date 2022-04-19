@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { WatchListContextProvider } from "./store/watchlist-context";
+import { MovieContextProvider } from "./store/movie-context";
 import "./index.css";
 
 import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <WatchListContextProvider>
+    <MovieContextProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </WatchListContextProvider>
+    </MovieContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

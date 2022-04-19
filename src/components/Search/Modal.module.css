@@ -36,6 +36,7 @@
   bottom: 0;
   margin-bottom: 2.4rem;
   display: flex;
+  align-items: center;
   gap: 1.2rem;
 }
 
@@ -43,7 +44,6 @@
   font-size: 2rem;
   padding: 0.8rem;
   border: none;
-  background-color: #f07167;
   color: #fff;
   border-radius: 9px;
   text-align: center;
@@ -51,8 +51,23 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-.modal_button:hover {
+
+.modal_watchlist_button {
+  background-color: #f07167;
+}
+
+.modal_watchlist_button:hover {
   background-color: #c05a52;
+}
+
+.modal_readmore_button {
+  background-color: #fff;
+  color: #555;
+}
+
+.modal_readmore_button:hover {
+  background-color: #fdf2e9;
+  box-shadow: inset 0 0 0 3px #fff;
 }
 
 .modal_image {

@@ -25,7 +25,7 @@ const Navigation = () => {
           Watch list
         </NavLink>
         <NavLink
-          to="/bussy"
+          to="/ratings"
           className={({ isActive }) =>
             isActive
               ? `${classes.navigation_active} ${classes.navigation_title}`

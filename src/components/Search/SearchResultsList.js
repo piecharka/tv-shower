@@ -33,7 +33,9 @@ const SearchResultsList = (props) => {
             </li>
           );
         })}
-      {modal && <Modal data={movieDetails} onExit={exitModal} />}
+      {modal && (
+        <Modal data={movieDetails} watchList={false} onExit={exitModal} />
+      )}
     </ul>
   );
 };

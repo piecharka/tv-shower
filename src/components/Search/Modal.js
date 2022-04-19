@@ -1,9 +1,12 @@
 import classes from "./Modal.module.css";
-import WatchListContext from "../../store/watchlist-context";
-import { useEffect, useContext } from "react";
+import MovieContext from "../../store/movie-context";
+import { useEffect, useContext, useState } from "react";
 import { AiOutlineFullscreenExit } from "react-icons/ai";
+import Rating from "@mui/material/Rating";
 const Modal = (props) => {
-  const ctx = useContext(WatchListContext);
+  const [rating, setRating] = useState(props.data.rate ? props.data.rate : 0);
+  //console.log(props.data.rate);
+  const ctx = useContext(MovieContext);
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -11,9 +14,23 @@ const Modal = (props) => {
       }
     });
   }, [props]);
+  const ratingBeginning = () => {
+    const element = ctx.ratingList.find((item) => item.id === props.data.id);
+    if (!element || !element.rate) return 0;
+    return element.rate;
+  };
 
   const addToWatchList = () => {
-    ctx.addMovie(props.data);
+    ctx.addMovieWatchList(props.data);
+  };
+  const deleteFromWatchList = () => {
+    ctx.deleteMovieWatchList(props.data);
+    props.onExit();
+  };
+  const ratingHandler = (event, newValue) => {
+    setRating(newValue);
+    ctx.rate(props.data, newValue);
+    ctx.deleteMovieWatchList(props.data);
   };
 
   return (
@@ -34,10 +51,32 @@ const Modal = (props) => {
           ></div>
 
           <div className={classes.modal_button_box}>
-            <button onClick={addToWatchList} className={classes.modal_button}>
-              Add to watch list
-            </button>
-            <a className={classes.modal_button} href={props.data.url}>
+            {!props.watchList && (
+              <button
+                onClick={addToWatchList}
+                className={`${classes.modal_button} ${classes.modal_watchlist_button}`}
+              >
+                Add to watch list
+              </button>
+            )}
+            {props.watchList && (
+              <button
+                onClick={deleteFromWatchList}
+                className={`${classes.modal_button} ${classes.modal_watchlist_button}`}
+              >
+                Delete from watch list
+              </button>
+            )}
+            <Rating
+              name="simple-controlled"
+              value={rating === 0 ? ratingBeginning() : rating}
+              size="large"
+              onChange={ratingHandler}
+            />
+            <a
+              className={`${classes.modal_button} ${classes.modal_readmore_button}`}
+              href={props.data.url}
+            >
               Read more
             </a>
           </div>
