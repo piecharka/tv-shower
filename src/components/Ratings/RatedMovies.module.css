@@ -1,22 +1,10 @@
 .rated_movies_box {
   display: flex;
-  max-width: 100rem;
 
-  margin: 2rem auto;
   gap: 2rem;
   justify-content: center;
 }
-.showmore_button {
-  font-size: 2rem;
-  padding: 0.8rem;
-  border: none;
-  color: #fff;
-  border-radius: 9px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+
 .rated_movies_img {
   width: 16rem;
 }

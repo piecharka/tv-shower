@@ -9,7 +9,14 @@
 
   border-bottom: 1px solid #868e96;
 }
-
+.movie_box {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  align-items: center;
+  max-width: 100rem;
+  margin: 2rem auto;
+}
 .count_flex {
   display: flex;
   align-items: center;
@@ -24,14 +31,19 @@
   color: #868e96;
 }
 .showmore_button {
-  margin: 0 auto;
   font-size: 2rem;
-  padding: 0.8rem;
-  border: none;
-  color: #fff;
-  border-radius: 9px;
+  padding: 0.8rem 9.6rem;
+  border: 1px solid #868e96;
+  color: #343a40;
+  background-color: #fff;
+
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.6s;
+}
+.showmore_button:hover {
+  color: #fff;
+  background-color: #343a40;
+  border: 1px solid #343a40;
 }

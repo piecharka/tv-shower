@@ -7,6 +7,8 @@ const MovieContext = React.createContext({
   rate: (movie, rating) => {},
   addMovieWatchList: (movie) => {},
   deleteMovieWatchList: (movie) => {},
+  addFavouriteMovie: (movie) => {},
+  deleteFavouriteMovie: (movie) => {},
 });
 
 export const MovieContextProvider = (props) => {
@@ -34,14 +36,20 @@ export const MovieContextProvider = (props) => {
 
   const addMovieWatchList = (movie) => {
     if (copyHandler(watchList, movie)) return;
-    setWatchList((prevList) => {
-      return [...prevList, movie];
-    });
+    setWatchList((prevList) => [...prevList, movie]);
   };
   const deleteMovieWatchList = (movie) => {
-    setWatchList((prevList) => {
-      return prevList.filter((item) => item.id !== movie.id);
-    });
+    setWatchList((prevList) => prevList.filter((item) => item.id !== movie.id));
+  };
+
+  const addFavouriteMovie = (movie) => {
+    if (copyHandler(favouritesList, movie)) return;
+    setFavouritesList((prevList) => [...prevList, movie]);
+  };
+  const deleteFavouriteMovie = (movie) => {
+    setFavouritesList((prevList) =>
+      prevList.filter((item) => item.id !== movie.id)
+    );
   };
 
   const contextValue = {
@@ -51,6 +59,8 @@ export const MovieContextProvider = (props) => {
     rate,
     addMovieWatchList,
     deleteMovieWatchList,
+    addFavouriteMovie,
+    deleteFavouriteMovie,
   };
 
   return (

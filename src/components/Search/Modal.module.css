@@ -21,10 +21,14 @@
   grid-template-columns: 0.5fr 1fr;
   column-gap: 2.4rem;
 }
-
+.title_box {
+  display: inline-flex;
+  align-items: center;
+  gap: 3.2rem;
+  margin-bottom: 2.4rem;
+}
 .modal_title {
   font-size: 3.6rem;
-  padding-bottom: 2.4rem;
 }
 .modal_description {
   font-size: 1.6rem;
@@ -72,6 +76,13 @@
 
 .modal_image {
   width: 100%;
+}
+
+.favourite_icon {
+  font-size: 3.6rem;
+  cursor: pointer;
+  color: #f07167;
+  transition: all 0.3s;
 }
 
 .exit_icon {

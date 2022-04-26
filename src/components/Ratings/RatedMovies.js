@@ -19,7 +19,6 @@ const RatedMovies = () => {
           </div>
         );
       })}
-      <button className={classes.showmore_button}>Show more</button>
     </div>
   );
 };

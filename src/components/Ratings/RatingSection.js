@@ -25,8 +25,10 @@ const RatingSection = () => {
           <p className={classes.count_text}>favourites</p>
         </span>
       </div>
-      <RatedMovies />
-      <button className={classes.showmore_button}>Show more</button>
+      <div className={classes.movie_box}>
+        <RatedMovies />
+        <button className={classes.showmore_button}>Show more</button>
+      </div>
     </div>
   );
 };
