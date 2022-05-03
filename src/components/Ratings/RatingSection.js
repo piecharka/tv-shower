@@ -25,10 +25,14 @@ const RatingSection = () => {
           <p className={classes.count_text}>favourites</p>
         </span>
       </div>
-      <div className={classes.movie_box}>
-        <RatedMovies />
-        <button className={classes.showmore_button}>Show more</button>
-      </div>
+      {ctx.ratingList.length !== 0 && (
+        <div className={classes.movie_box}>
+          <RatedMovies />
+          {ctx.ratingList.length > 5 && (
+            <button className={classes.showmore_button}>Show more</button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

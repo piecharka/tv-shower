@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const MovieContext = React.createContext({
   watchList: [],
   ratingList: [],
@@ -16,6 +16,30 @@ export const MovieContextProvider = (props) => {
   const [ratingList, setRatingList] = useState([]);
   const [favouritesList, setFavouritesList] = useState([]);
 
+  useEffect(() => {
+    // ON START
+    const watchListItems = JSON.parse(localStorage.getItem("watchlist"));
+    if (watchListItems) {
+      setWatchList(watchListItems);
+    }
+
+    const favouritesItems = JSON.parse(localStorage.getItem("favourites"));
+    if (favouritesItems) {
+      setFavouritesList(favouritesItems);
+    }
+
+    const ratingsItems = JSON.parse(localStorage.getItem("ratings"));
+    if (ratingsItems) {
+      setRatingList(ratingsItems);
+    }
+  }, []);
+  useEffect(() => {
+    //ON UPDATE
+    localStorage.setItem("ratings", JSON.stringify(ratingList));
+    localStorage.setItem("watchlist", JSON.stringify(watchList));
+    localStorage.setItem("favourites", JSON.stringify(favouritesList));
+  }, [favouritesList, ratingList, watchList]);
+
   const copyHandler = (array, movie) => {
     const copy = array.find((element) => element.id === movie.id);
     if (copy) return true;
@@ -23,6 +47,14 @@ export const MovieContextProvider = (props) => {
   };
 
   const rate = (movie, rating) => {
+    if (!rating) {
+      console.log(ratingList);
+      console.log(rating);
+      setRatingList((prevList) =>
+        prevList.filter((item) => item.id !== movie.id)
+      );
+      return;
+    }
     if (copyHandler(ratingList, movie)) return;
 
     setWatchList((prevList) => {
@@ -36,7 +68,9 @@ export const MovieContextProvider = (props) => {
 
   const addMovieWatchList = (movie) => {
     if (copyHandler(watchList, movie)) return;
-    setWatchList((prevList) => [...prevList, movie]);
+    setWatchList((prevList) => {
+      return [...prevList, movie];
+    });
   };
   const deleteMovieWatchList = (movie) => {
     setWatchList((prevList) => prevList.filter((item) => item.id !== movie.id));
