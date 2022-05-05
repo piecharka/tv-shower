@@ -1,11 +1,8 @@
-import { useContext } from "react";
-import MovieContext from "../../store/movie-context";
 import classes from "./RatedMovies.module.css";
-const RatedMovies = () => {
-  const ctx = useContext(MovieContext);
+const RatedMovies = (props) => {
   return (
     <div className={classes.rated_movies_box}>
-      {ctx.ratingList.map((movie, index) => {
+      {props.movieList.map((movie, index) => {
         console.log(index);
         if (index > 4) return;
         return (

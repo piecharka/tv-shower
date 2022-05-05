@@ -27,8 +27,18 @@ const RatingSection = () => {
       </div>
       {ctx.ratingList.length !== 0 && (
         <div className={classes.movie_box}>
-          <RatedMovies />
+          <h3 className={classes.section_title}>Rated movies</h3>
+          <RatedMovies movieList={ctx.ratingList} />
           {ctx.ratingList.length > 5 && (
+            <button className={classes.showmore_button}>Show more</button>
+          )}
+        </div>
+      )}
+      {ctx.favouritesList.length !== 0 && (
+        <div className={classes.movie_box}>
+          <h3 className={classes.section_title}>Favourite movies</h3>
+          <RatedMovies movieList={ctx.favouritesList} />
+          {ctx.favouritesList.length > 5 && (
             <button className={classes.showmore_button}>Show more</button>
           )}
         </div>

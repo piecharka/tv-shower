@@ -1,15 +1,25 @@
 import classes from "./SearchResultsList.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "./Modal";
 const SearchResultsList = (props) => {
   const [modal, setModal] = useState(false);
+  const [isInputEmpty, setIsInputEmpty] = useState(true);
   const [movieDetails, setMovieDetails] = useState({});
+
+  useEffect(() => {
+    if (props.data.length === 0) {
+      setIsInputEmpty(true);
+    } else {
+      setIsInputEmpty(false);
+    }
+  }, [props.data]);
+
   const exitModal = () => {
     setModal(false);
   };
   return (
     <ul className={classes.search_list}>
-      {props.data.length !== 0 &&
+      {!isInputEmpty &&
         props.data.map((movie, key) => {
           const movieDetailsHandler = () => {
             console.log(movie);

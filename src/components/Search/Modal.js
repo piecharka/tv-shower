@@ -12,6 +12,7 @@ const Modal = (props) => {
   const [favouriteMovie, setFavouriteMovie] = useState(false);
   //console.log(props.data.rate);
   const ctx = useContext(MovieContext);
+
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
@@ -19,18 +20,19 @@ const Modal = (props) => {
       }
     });
   }, [props]);
-  const ratingBeginning = () => {
-    const element = ctx.ratingList.find((item) => item.id === props.data.id);
-    if (!element || !element.rate) return 0;
-    return element.rate;
-  };
-  const favouriteBeginning = () => {
-    const element = ctx.favouritesList.find(
+
+  //Rating and favourite feature in the beginning
+  useEffect(() => {
+    const favouriteElement = ctx.favouritesList.find(
       (item) => item.id === props.data.id
     );
-    if (!element) return false;
-    return true;
-  };
+    if (favouriteElement) setFavouriteMovie(true);
+
+    const ratingElement = ctx.ratingList.find(
+      (item) => item.id === props.data.id
+    );
+    if (ratingElement && ratingElement.rate) setRating(ratingElement.rate);
+  }, [ctx.favouritesList, props.data.id, ctx.ratingList]);
 
   const addToWatchList = () => {
     ctx.addMovieWatchList(props.data);
@@ -108,7 +110,7 @@ const Modal = (props) => {
             </a>
             <Rating
               name="simple-controlled"
-              value={rating === 0 ? ratingBeginning() : rating}
+              value={rating}
               size="large"
               onChange={ratingHandler}
             />

@@ -1,10 +1,10 @@
 .rated_movies_box {
   display: flex;
-
   gap: 2rem;
   justify-content: center;
 }
 
 .rated_movies_img {
   width: 16rem;
+  height: 22rem;
 }
