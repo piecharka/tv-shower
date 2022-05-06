@@ -19,8 +19,7 @@ const Homepage = () => {
     )
       .then((response) => response.json())
       .then((data) => data);
-    setMovieData(json);
-    console.log(json);
+    setMovieData(json.splice(0, 8));
   }, [searchText]);
   useEffect(() => {
     if (searchText !== "") {
@@ -31,7 +30,7 @@ const Homepage = () => {
   return (
     <Fragment>
       <SearchBar onInput={inputHandler} />
-      <SearchResultsList data={movieData} />
+      {searchText.length !== 0 && <SearchResultsList data={movieData} />}
     </Fragment>
   );
 };
