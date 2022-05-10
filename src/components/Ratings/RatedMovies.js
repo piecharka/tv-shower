@@ -3,8 +3,7 @@ const RatedMovies = (props) => {
   return (
     <div className={classes.rated_movies_box}>
       {props.movieList.map((movie, index) => {
-        console.log(index);
-        if (index > 4) return;
+        if (index > 4) return "";
         return (
           <div key={index}>
             <img

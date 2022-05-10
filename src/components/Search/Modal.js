@@ -1,16 +1,11 @@
 import classes from "./Modal.module.css";
 import MovieContext from "../../store/movie-context";
-import { useEffect, useContext, useState } from "react";
-import {
-  AiOutlineFullscreenExit,
-  AiOutlineHeart,
-  AiFillHeart,
-} from "react-icons/ai";
-import Rating from "@mui/material/Rating";
+import { useEffect, useContext } from "react";
+import FavouriteIcon from "../Favourite/FavouriteIcon";
+import { AiOutlineFullscreenExit } from "react-icons/ai";
+import Ratings from "../Ratings/Ratings";
+
 const Modal = (props) => {
-  const [rating, setRating] = useState(props.data.rate ? props.data.rate : 0);
-  const [favouriteMovie, setFavouriteMovie] = useState(false);
-  //console.log(props.data.rate);
   const ctx = useContext(MovieContext);
 
   useEffect(() => {
@@ -22,17 +17,6 @@ const Modal = (props) => {
   }, [props]);
 
   //Rating and favourite feature in the beginning
-  useEffect(() => {
-    const favouriteElement = ctx.favouritesList.find(
-      (item) => item.id === props.data.id
-    );
-    if (favouriteElement) setFavouriteMovie(true);
-
-    const ratingElement = ctx.ratingList.find(
-      (item) => item.id === props.data.id
-    );
-    if (ratingElement && ratingElement.rate) setRating(ratingElement.rate);
-  }, [ctx.favouritesList, props.data.id, ctx.ratingList]);
 
   const addToWatchList = () => {
     ctx.addMovieWatchList(props.data);
@@ -41,19 +25,7 @@ const Modal = (props) => {
     ctx.deleteMovieWatchList(props.data);
     props.onExit();
   };
-  const ratingHandler = (event, newValue) => {
-    setRating(newValue);
-    ctx.rate(props.data, newValue);
-    ctx.deleteMovieWatchList(props.data);
-  };
-  const favouriteMovieOn = () => {
-    setFavouriteMovie(true);
-    ctx.addFavouriteMovie(props.data);
-  };
-  const favouriteMovieOff = () => {
-    setFavouriteMovie(false);
-    ctx.deleteFavouriteMovie(props.data);
-  };
+
   return (
     <div className={classes.theme}>
       <div className={classes.modal}>
@@ -67,18 +39,7 @@ const Modal = (props) => {
         <div>
           <div className={classes.title_box}>
             <h3 className={classes.modal_title}>{props.data.name}</h3>
-            {!favouriteMovie && (
-              <AiOutlineHeart
-                className={classes.favourite_icon}
-                onClick={favouriteMovieOn}
-              />
-            )}
-            {favouriteMovie && (
-              <AiFillHeart
-                className={classes.favourite_icon}
-                onClick={favouriteMovieOff}
-              />
-            )}
+            <FavouriteIcon data={props.data} />
           </div>
           <div
             className={classes.modal_description}
@@ -108,12 +69,7 @@ const Modal = (props) => {
             >
               Read more
             </a>
-            <Rating
-              name="simple-controlled"
-              value={rating}
-              size="large"
-              onChange={ratingHandler}
-            />
+            <Ratings data={props.data} />
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import RatedMovies from "./RatedMovies";
 import MovieContext from "../../store/movie-context";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CountUp from "react-countup";
 import classes from "./RatingSection.module.css";
 const RatingSection = () => {
@@ -30,7 +31,12 @@ const RatingSection = () => {
           <h3 className={classes.section_title}>Rated movies</h3>
           <RatedMovies movieList={ctx.ratingList} />
           {ctx.ratingList.length > 5 && (
-            <button className={classes.showmore_button}>Show more</button>
+            <Link
+              to="/ratings/ratedmovies-list"
+              className={classes.showmore_button}
+            >
+              Show more
+            </Link>
           )}
         </div>
       )}
@@ -39,7 +45,12 @@ const RatingSection = () => {
           <h3 className={classes.section_title}>Favourite movies</h3>
           <RatedMovies movieList={ctx.favouritesList} />
           {ctx.favouritesList.length > 5 && (
-            <button className={classes.showmore_button}>Show more</button>
+            <Link
+              to="/ratings/favourite-list"
+              className={classes.showmore_button}
+            >
+              Show more
+            </Link>
           )}
         </div>
       )}

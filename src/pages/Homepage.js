@@ -19,6 +19,7 @@ const Homepage = () => {
     )
       .then((response) => response.json())
       .then((data) => data);
+    console.log(json);
     setMovieData(json.splice(0, 8));
   }, [searchText]);
   useEffect(() => {

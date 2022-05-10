@@ -1,0 +1,6 @@
+.favourite_icon {
+  font-size: 3.6rem;
+  cursor: pointer;
+  color: #f07167;
+  transition: all 0.3s;
+}

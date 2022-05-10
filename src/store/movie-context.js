@@ -43,7 +43,7 @@ export const MovieContextProvider = (props) => {
   const copyHandler = (array, movie) => {
     const copy = array.find((element) => element.id === movie.id);
     if (copy) return true;
-    else return false;
+    return false;
   };
 
   const rate = (movie, rating) => {
@@ -55,13 +55,12 @@ export const MovieContextProvider = (props) => {
       );
       return;
     }
-    if (copyHandler(ratingList, movie)) return;
 
     setWatchList((prevList) => {
       return prevList.filter((item) => item.id !== movie.id);
     });
     setRatingList((prevList) => {
-      prevList.filter((item) => item.id === movie.id);
+      prevList = prevList.filter((item) => item.id !== movie.id);
       return [...prevList, { ...movie, rate: rating }];
     });
   };

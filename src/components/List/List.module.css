@@ -1,0 +1,35 @@
+.list_box {
+  display: grid;
+  max-width: 82.5rem;
+  grid-template-columns: 1fr;
+  row-gap: 1.2rem;
+
+  margin: 2.4rem auto;
+}
+.list_item {
+  list-style-type: none;
+}
+.item_box {
+  display: flex;
+}
+.title_box {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+.content_box {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-left: 1.6rem;
+}
+.content_text {
+  font-size: 1.8rem;
+}
+
+.item_img {
+  max-width: 15rem;
+}
+.item_title {
+  font-size: 4.4rem;
+  font-weight: 500;
+}
